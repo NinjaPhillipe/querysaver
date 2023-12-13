@@ -15,7 +15,8 @@ func main() {
 
 	tags := sqliteDb.SelectAllTags()
 	fmt.Println(tags)
-	// sqliteDb.SelectTag(1)
+	tagOne, _ := sqliteDb.SelectTag(2)
+	fmt.Println(tagOne)
 	// sqliteDb.InsertTag("Yellow", "#FF0000")
 
 	sqliteDb.Close()
