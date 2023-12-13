@@ -1,4 +1,4 @@
-module querysaver
+module core
 
 go 1.21.4
 
