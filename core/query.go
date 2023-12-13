@@ -15,12 +15,17 @@ func (sqliteDb *SqliteDb) SelectAllTags() []Tag {
 	return readRowTag(rows)
 }
 
-func (sqliteDb *SqliteDb) SelectTag(tagId int) {
+func (sqliteDb *SqliteDb) SelectTag(tagId int) (Tag, error) {
 	row, err := sqliteDb.db.Query("SELECT * FROM tags WHERE tag_id = ?", tagId)
 	if err != nil {
-		panic(err)
+		// panic(err)
+		return nil, err
 	}
-	fmt.Println(row)
+	if !row.Next() {
+		err := fmt.Errorf("No tag with id %d", tagId)
+		return nil, err
+	}
+	return readRowTag(row), nil
 }
 
 // func (sqliteDb *SqliteDb) InsertTag(name string) {
