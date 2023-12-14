@@ -1,7 +1,8 @@
 package main
 
 import (
-	db "core"
+	"core/db"
+	"core/server"
 	"fmt"
 )
 
@@ -18,6 +19,10 @@ func main() {
 	tagOne, _ := sqliteDb.SelectTag(2)
 	fmt.Println(tagOne)
 	// sqliteDb.InsertTag("Yellow", "#FF0000")
+
+	serv := server.NewServer()
+	serv.Ping()
+	serv.Run()
 
 	sqliteDb.Close()
 }
