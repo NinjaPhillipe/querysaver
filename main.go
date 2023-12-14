@@ -21,8 +21,7 @@ func main() {
 	// // sqliteDb.InsertTag("Yellow", "#FF0000")
 
 	serv := server.NewServer()
-	serv.Ping()
-	serv.GetTags()
+	serv.Init()
 	serv.Run()
 
 	// serv.Close()
