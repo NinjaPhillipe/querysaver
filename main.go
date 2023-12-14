@@ -11,18 +11,21 @@ func main() {
 
 	db.Add(1, 2)
 
-	sqliteDb := &db.SqliteDb{}
-	sqliteDb.Connect()
+	// sqliteDb := &db.SqliteDb{}
+	// sqliteDb.Connect()
 
-	tags := sqliteDb.SelectAllTags()
-	fmt.Println(tags)
-	tagOne, _ := sqliteDb.SelectTag(2)
-	fmt.Println(tagOne)
-	// sqliteDb.InsertTag("Yellow", "#FF0000")
+	// tags := sqliteDb.SelectAllTags()
+	// fmt.Println(tags)
+	// tagOne, _ := sqliteDb.SelectTag(2)
+	// fmt.Println(tagOne)
+	// // sqliteDb.InsertTag("Yellow", "#FF0000")
 
 	serv := server.NewServer()
 	serv.Ping()
+	serv.GetTags()
 	serv.Run()
 
-	sqliteDb.Close()
+	// serv.Close()
+
+	// sqliteDb.Close()
 }
