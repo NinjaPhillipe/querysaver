@@ -30,6 +30,9 @@ func (s *Server) Init() {
 	s.ping()
 	s.getTags()
 	s.getTagsWithId()
+
+	s.addFile()
+	s.getFile()
 }
 
 func (s *Server) ping() {

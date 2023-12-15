@@ -62,6 +62,23 @@ func (sqliteDb *SqliteDb) AddFile(fileName string, folderId int, label string) e
 	return nil
 }
 
+func (SqliteDb *SqliteDb) QueryFileWithTagsIdOr(tagsId []int) (*[]File, error) {
+	tags := concatArrayInt(tagsId, ",")
+
+	row, err := SqliteDb.db.Query(`select f.*
+	FROM file f
+	join l_file_tag lft on lft.fk_file_id  = f.id_file
+	where lft.fk_tag_id  = 1`, tags)
+
+	if err != nil {
+		return nil, err
+	}
+
+	files := readRowFiles(row)
+
+	return &files, nil
+}
+
 // l_file_tag
 
 func (sqliteDb *SqliteDb) AddTagToFile(fileId int, tagId int) error {
