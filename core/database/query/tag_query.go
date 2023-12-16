@@ -1,8 +1,8 @@
 package query
 
 import (
-	. "core/db/data"
-	. "core/db/reader"
+	. "core/database/data"
+	. "core/database/reader"
 	"database/sql"
 	"fmt"
 )

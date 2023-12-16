@@ -1,19 +1,19 @@
 package server
 
 import (
-	"core/db"
+	"core/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
-	sqliteDb *db.SqliteDb
+	sqliteDb *database.SqliteDb
 	engine   *gin.Engine
 }
 
 func NewServer() *Server {
-	sqliteDb := &db.SqliteDb{}
+	sqliteDb := &database.SqliteDb{}
 	sqliteDb.Connect()
 	return &Server{sqliteDb, gin.Default()}
 }

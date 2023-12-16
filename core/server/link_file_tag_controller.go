@@ -1,8 +1,8 @@
 package server
 
 import (
-	"core/db/data"
-	"core/db/query"
+	"core/database/data"
+	"core/database/query"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"core/db"
+	"core/database"
 	"core/server"
 	"fmt"
 )
@@ -9,7 +9,7 @@ import (
 func main() {
 	fmt.Println("Hello, World!")
 
-	db.Add(1, 2)
+	database.Add(1, 2)
 
 	// sqliteDb := &db.SqliteDb{}
 	// sqliteDb.Connect()

@@ -1,7 +1,8 @@
 package server
 
 import (
-	"core/db"
+	"core/database/data"
+	"core/database/query"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +14,7 @@ type TagsIdList struct {
 
 func (s *Server) addFile() {
 	s.engine.POST("/file", func(c *gin.Context) {
-		var file db.File
+		var file data.File
 		// todo id sert a rien
 
 		if err := c.BindJSON(&file); err != nil {
@@ -40,7 +41,7 @@ func (s *Server) getFile() {
 			return
 		}
 
-		files, err := s.sqliteDb.QueryFileWithTagsIdOr(tagsId.TagsId)
+		files, err := query.QueryFileWithTagsIdOr(s.sqliteDb.Db, tagsId.TagsId)
 		if err != nil {
 			c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 			return

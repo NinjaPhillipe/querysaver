@@ -1,7 +1,7 @@
 package reader
 
 import (
-	. "core/db/data"
+	. "core/database/data"
 	"database/sql"
 	"fmt"
 	"log"
