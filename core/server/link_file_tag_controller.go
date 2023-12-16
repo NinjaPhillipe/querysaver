@@ -1,8 +1,8 @@
 package server
 
 import (
-	. "core/db/data"
-	. "core/db/query"
+	"core/db/data"
+	"core/db/query"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,14 +11,14 @@ import (
 func (s *Server) addTagToFile() {
 
 	s.engine.POST("/link_file_tag", func(c *gin.Context) {
-		var link LinkFileTagCreate
+		var link data.LinkFileTagCreate
 
 		if err := c.BindJSON(&link); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
-		err := AddTagToFile(s.sqliteDb.Db, link.FileId, link.TagId)
+		err := query.AddTagToFile(s.sqliteDb.Db, link.FileId, link.TagId)
 		if err != nil {
 			c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 			return
@@ -26,14 +26,14 @@ func (s *Server) addTagToFile() {
 	})
 
 	s.engine.DELETE("/link_file_tag", func(c *gin.Context) {
-		var link LinkFileTagCreate
+		var link data.LinkFileTagCreate
 
 		if err := c.BindJSON(&link); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
-		err := RemoveTagFromFile(s.sqliteDb.Db, link.FileId, link.TagId)
+		err := query.RemoveTagFromFile(s.sqliteDb.Db, link.FileId, link.TagId)
 		if err != nil {
 			c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 			return
