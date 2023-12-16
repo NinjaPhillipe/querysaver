@@ -5,3 +5,8 @@ type Tag struct {
 	Name  string
 	Color string
 }
+
+type TagCreate struct {
+	Name  string
+	Color string
+}

@@ -21,12 +21,13 @@ func SelectTag(db *sql.DB, tagId int) (*Tag, error) {
 }
 
 // todo make color hexadicimal
-func InsertTag(db *sql.DB, name string, color string) {
+func InsertTag(db *sql.DB, name string, color string) error {
 	fmt.Println("Inserting tag")
 	_, err := db.Exec("INSERT INTO tag (name, color) VALUES (?, ?)", name, color)
-	if err != nil {
-		panic(err)
+	if err != nil { // dumb code
+		return err
 	}
+	return nil
 }
 
 func SelectAllTags(db *sql.DB) []Tag {

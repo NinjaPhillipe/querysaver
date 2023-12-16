@@ -28,6 +28,8 @@ func (s *Server) Close() {
 
 func (s *Server) Init() {
 	s.ping()
+
+	s.addTag()
 	s.getTags()
 	s.getTagsWithId()
 
