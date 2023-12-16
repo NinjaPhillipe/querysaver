@@ -33,6 +33,8 @@ func (s *Server) Init() {
 	s.getTags()
 	s.getTagsWithId()
 
+	s.addTagToFile()
+
 	s.addFile()
 	s.getFile()
 }

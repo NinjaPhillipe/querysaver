@@ -39,25 +39,3 @@ func (SqliteDb *SqliteDb) QueryFileWithTagsIdOr(tagsId []int) (*[]File, error) {
 
 	return &files, nil
 }
-
-// l_file_tag
-
-func (sqliteDb *SqliteDb) AddTagToFile(fileId int, tagId int) error {
-	_, err := sqliteDb.Db.Exec("INSERT INTO l_file_tag (fk_file_id, fk_tag_id) VALUES (?, ?)", fileId, tagId)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (sqliteDb *SqliteDb) RemoveTagFromFile(fileId int, tagId int) error {
-	_, err := sqliteDb.Db.Exec("DELETE FROM l_file_tag WHERE fk_file_id = ? AND fk_tag_id = ?", fileId, tagId)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
