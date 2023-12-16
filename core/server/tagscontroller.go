@@ -1,6 +1,7 @@
 package server
 
 import (
+	. "core/db/query"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -12,7 +13,7 @@ func (s *Server) getTags() {
 	s.engine.GET("/tags", func(c *gin.Context) {
 
 		c.JSON(http.StatusOK, gin.H{
-			"tags": s.sqliteDb.SelectAllTags(),
+			"tags": SelectAllTags(s.sqliteDb.Db),
 		})
 	})
 }
@@ -29,7 +30,7 @@ func (s *Server) getTagsWithId() {
 			return
 		}
 
-		data, err := s.sqliteDb.SelectTag(id)
+		data, err := SelectTag(s.sqliteDb.Db, id)
 		if err != nil {
 			c.JSON(http.StatusNotFound, gin.H{
 				"error": err.Error(),

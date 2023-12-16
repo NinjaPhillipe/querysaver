@@ -8,8 +8,10 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// TODO REFACTO REMOVE  SqliteDb struct
+
 type SqliteDb struct {
-	db *sql.DB
+	Db *sql.DB
 }
 
 func (sqliteDb *SqliteDb) Connect() {
@@ -17,7 +19,7 @@ func (sqliteDb *SqliteDb) Connect() {
 
 	var err error
 
-	sqliteDb.db, err = sql.Open("sqlite3", "./build/querysaverdb.db")
+	sqliteDb.Db, err = sql.Open("sqlite3", "./build/querysaverdb.db")
 
 	if err != nil {
 		log.Fatal(err)
@@ -27,5 +29,5 @@ func (sqliteDb *SqliteDb) Connect() {
 
 func (sqliteDb *SqliteDb) Close() {
 	fmt.Println("Sqlite closed")
-	defer sqliteDb.db.Close()
+	defer sqliteDb.Db.Close()
 }
