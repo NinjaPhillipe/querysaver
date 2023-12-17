@@ -1,9 +1,9 @@
 package data
 
 type Tag struct {
-	Id    int
-	Name  string
-	Color string
+	Id    int    `json:"id"`
+	Name  string `json:"name"`
+	Color string `json:"color"`
 }
 
 type TagCreate struct {

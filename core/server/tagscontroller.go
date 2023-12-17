@@ -30,11 +30,9 @@ func (s *Server) addTag() {
 }
 
 func (s *Server) getTags() {
-	s.engine.GET("/tags", func(c *gin.Context) {
+	s.engine.GET("/tags/query/all", func(c *gin.Context) {
 
-		c.JSON(http.StatusOK, gin.H{
-			"tags": SelectAllTags(s.sqliteDb.Db),
-		})
+		c.JSON(http.StatusOK, SelectAllTags(s.sqliteDb.Db))
 	})
 }
 
