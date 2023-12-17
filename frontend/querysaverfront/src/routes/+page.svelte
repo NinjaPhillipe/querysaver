@@ -1,7 +1,12 @@
+<script lang="ts">
+  import TagsList from "../components/tags-list.svelte";
+</script>
+
 <div class="flex min-h-screen">
   <div class="w-1/4">
     <div>SEARCH BAR</div>
     <div>SEARCH RESULTS TAGS</div>
+    <div><TagsList /></div>
     <div>CORESPONDING FILE</div>
   </div>
   <div class="w-3/4">
