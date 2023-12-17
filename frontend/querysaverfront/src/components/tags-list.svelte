@@ -1,18 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
-
-  // Define the type for a tag
-  interface Tag {
-    id: number;
-    name: string;
-    color: string;
-  }
+  import type { Tag } from "../lib/dataType";
+  import { selectedTags } from "../lib/store";
 
   let tags: Tag[] = [];
-
-  // Create a store for the selected tag
-  export const selectedTags = writable<Tag[]>([]);
 
   onMount(async () => {
     const response = await fetch("http://localhost:8080/tags/query/all");
@@ -41,15 +33,13 @@
 
 <div class="tag-list border-2 flex flex-wrap">
   {#each tags as tag (tag)}
-    <span
+    <button
       class="badge"
       on:click={() => updateSelectedTagsList(tag)}
-      style="background-color: {tag.color};">{tag.name}</span
-    >
+      style="background-color: {tag.color};"
+      >{tag.name}
+    </button>
   {/each}
-</div>
-<div>
-  <p>Selected tags: {$selectedTags.map((tag) => tag.name).join(", ")}</p>
 </div>
 
 <style>
