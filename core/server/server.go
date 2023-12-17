@@ -15,7 +15,11 @@ type Server struct {
 func NewServer() *Server {
 	sqliteDb := &database.SqliteDb{}
 	sqliteDb.Connect()
-	return &Server{sqliteDb, gin.Default()}
+	engine := gin.Default()
+	// Add CORS middleware
+	engine.Use(CORSMiddleware())
+
+	return &Server{sqliteDb, engine}
 }
 
 func (s *Server) Run() {
@@ -45,4 +49,20 @@ func (s *Server) ping() {
 			"message": "pong",
 		})
 	})
+}
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }
