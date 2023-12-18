@@ -13,7 +13,11 @@
   {#each $selectedTags as tag (tag)}
     <div class="badge" style="background-color: {tag.color};">
       {tag.name}
-      <button class="border-2 px-1" on:click={() => removeTag(tag)}> x </button>
+      <button
+        type="button"
+        class="btn btn-sm variant-filled w-2 h-6 ml-2"
+        on:click={() => removeTag(tag)}>x</button
+      >
     </div>
   {/each}
 </div>
