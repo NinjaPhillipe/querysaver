@@ -1,22 +1,9 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { writable } from "svelte/store";
   import type { Tag } from "../lib/dataType";
   import { selectedTags } from "../lib/store";
-
-  let tags: Tag[] = [];
-
-  onMount(async () => {
-    const response = await fetch("http://localhost:8080/tags/query/all");
-    tags = await response.json();
-    console.log("tags");
-    console.log(tags);
-  });
+  import { searchResultsTags } from "../lib/store";
 
   function updateSelectedTagsList(tag: Tag) {
-    console.log("selectedTag");
-    console.log(tag);
-
     selectedTags.update((value) => {
       // Check if the tag is already in the store
       if (!value.some((t) => t.id === tag.id)) {
@@ -32,7 +19,7 @@
 </script>
 
 <div class="tag-list border-2 flex flex-wrap">
-  {#each tags as tag (tag)}
+  {#each $searchResultsTags as tag (tag)}
     <button
       class="badge"
       on:click={() => updateSelectedTagsList(tag)}

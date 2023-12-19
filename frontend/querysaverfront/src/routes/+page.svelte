@@ -1,12 +1,14 @@
 <script lang="ts">
   import TagsList from "../components/tags-list.svelte";
   import SearchState from "../components/search-state.svelte";
+  import SearchBar from "../components/search-bar.svelte";
 </script>
 
 <div class="flex min-h-screen">
   <div class="w-1/4">
     <div>SEARCH BAR</div>
-    <div>SEARCH RESULTS TAGS</div>
+    <div><SearchBar /></div>
+
     <div><TagsList /></div>
     <div>CORESPONDING FILE</div>
   </div>
