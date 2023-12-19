@@ -40,3 +40,14 @@ func SelectAllTags(db *sql.DB) []Tag {
 
 	return ReadRowTags(rows)
 }
+
+func SearchTag(db *sql.DB, name string) []Tag {
+	rows, err := db.Query("SELECT * FROM tag WHERE name LIKE ?", "%"+name+"%")
+	if err != nil {
+		panic(err)
+	}
+
+	defer rows.Close()
+
+	return ReadRowTags(rows)
+}

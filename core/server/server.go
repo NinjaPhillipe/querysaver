@@ -36,6 +36,7 @@ func (s *Server) Init() {
 	s.addTag()
 	s.getTags()
 	s.getTagsWithId()
+	s.searchTag()
 
 	s.addTagToFile()
 

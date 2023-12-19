@@ -60,3 +60,11 @@ func (s *Server) getTagsWithId() {
 		})
 	})
 }
+
+func (s *Server) searchTag() {
+	s.engine.GET("/tags/query/search/:name", func(c *gin.Context) {
+		name := c.Param("name")
+
+		c.JSON(http.StatusOK, SearchTag(s.sqliteDb.Db, name))
+	})
+}
