@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Tag } from "../lib/dataType";
-  import { selectedTags } from "../lib/store";
-  import { searchResultsTags } from "../lib/store";
+  import { searchResultsTags, selectedTags } from "../lib/store";
 
   function updateSelectedTagsList(tag: Tag) {
     selectedTags.update((value) => {
@@ -18,7 +17,7 @@
   // onclick;
 </script>
 
-<div class="tag-list border-2 flex flex-wrap">
+<div class="tag-list flex flex-wrap">
   {#each $searchResultsTags as tag (tag)}
     <button
       class="badge"

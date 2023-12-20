@@ -13,7 +13,7 @@
   }
 </script>
 
-<div class="flex">
+<div class="flex justify-between">
   <div>
     {#each $selectedTags as tag (tag)}
       <div class="badge" style="background-color: {tag.color};">
