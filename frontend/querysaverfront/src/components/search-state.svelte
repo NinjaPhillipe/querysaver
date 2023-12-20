@@ -5,12 +5,6 @@
 
   // type of query
   let orQuery = true;
-  let andQuery = !orQuery;
-
-  function toggleQuery() {
-    orQuery = !orQuery;
-    andQuery = !andQuery;
-  }
 
   function removeTag(tagToRemove: Tag) {
     selectedTags.update((tags) =>
@@ -19,7 +13,7 @@
   }
 </script>
 
-<div>
+<div class="flex">
   <div>
     {#each $selectedTags as tag (tag)}
       <div class="badge" style="background-color: {tag.color};">
@@ -33,11 +27,6 @@
     {/each}
   </div>
   <div class="flex flex-col">
-    <SlideToggle name="or" checked={orQuery} on:change={toggleQuery}
-      >OR</SlideToggle
-    >
-    <SlideToggle name="and" checked={andQuery} on:change={toggleQuery}
-      >AND</SlideToggle
-    >
+    <SlideToggle name="queryType" checked={orQuery}>OR/AND</SlideToggle>
   </div>
 </div>
